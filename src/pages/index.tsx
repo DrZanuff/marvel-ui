@@ -6,7 +6,7 @@ import styles from '../styles/Home.module.scss'
 
 export default function Home() {
 
-  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
+  const isMobile = useMediaQuery({ query: `(max-width: 1024px)` });
 
   return (
     <>

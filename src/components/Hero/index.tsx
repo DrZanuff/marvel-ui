@@ -14,18 +14,18 @@ interface Event {
     description : string,
     image : string,
     name : string,
-    events : Event[]
   }
 
 interface HeroProps {
-    heroes : Hero[]
+    heroes : Hero[],
+    heroIndex : number
 }
 
-export function Hero({ heroes } : HeroProps) {
+export function Hero({ heroes , heroIndex } : HeroProps) {
     
     return(
             <>
-            <Carousel plugins={['arrows' , 'infinite']}>
+            <Carousel plugins={['infinite']} value={heroIndex} draggable={false}>
                 {
                     heroes.map( hero => {
                         return(
@@ -47,34 +47,6 @@ export function Hero({ heroes } : HeroProps) {
                                         </p>
                                     </div>
 
-                                </div>
-                                <div className={styles.bottom}>
-
-                                    <div className={styles.events}>
-
-                                        <h1>IMPORTANT EVENTS</h1>
-
-                                        {
-                                            hero?.events.map( ev => {
-                                                return( 
-                                                    <div className={styles.singleEvent} key={ev.name}>
-                                                        <div className={styles.eventContent}>
-                                                            <div className={styles.eventProfile}>
-                                                                <span>{ev.name}</span>
-                                                                <img src={ev.image} alt="" />
-                                                            </div>
-                                                            <p className={styles.eventInfo}>
-                                                                {ev.description}
-                                                            </p>
-                                                        </div>
-                                    
-                                                        <hr />
-                                                    </div>
-                                                )
-                                            })
-                                        }
-                                        
-                                    </div>
                                 </div>
                             </div>    
 

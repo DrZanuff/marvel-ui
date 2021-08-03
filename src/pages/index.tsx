@@ -27,11 +27,11 @@ interface Hero {
   description : string,
   image : string,
   name : string,
-  events : Event[]
 }
 
 
 export default function Home() {
+  const [currentHero , setCurrentHero ] = useState(0);
   let heroesData = [] as Hero[];
   const [heroes , setHeroes ] = useState<Hero[]>( [] )
   const [ isLoaded , setIsLoaded ] = useState(false);
@@ -39,14 +39,17 @@ export default function Home() {
   const publicKey = process.env.MARVEL_PUBLIC_KEY as string;
   const privateKey = process.env.MARVEL_PRIVATE_KEY as string;
 
-  function updateData(heroList : Hero[]) {
-    console.log(heroList)
-    setIsLoaded(true)
-    setHeroes(heroList)
-    console.log('AQUI È DO UPDATEDATA:')
+  const api = "http://gateway.marvel.com/v1/public/"
+
+  function nextHero() {
+    console.log( `Current Hero ${currentHero} Hero Size ${heroesId.length}` )
+    setCurrentHero( currentHero == heroesId.length ? 0 : currentHero+1 )
   }
 
-  const api = "http://gateway.marvel.com/v1/public/"
+  function prevHero() {
+    setCurrentHero( currentHero == 0 ? heroesId.length : currentHero-1 )
+  }
+
 //GET /v1/public/characters
   useEffect( ()=> {
     
@@ -65,37 +68,13 @@ export default function Home() {
         .then( heroData => {
 
           let hero = {
-            description :  heroData.data.results[0].description,
-            name : heroData.data.results[0].name,
-            image : heroData.data.results[0].thumbnail.path+'.jpg',
-            events : [] as Event[]
+            description :  heroData.data?.results[0].description,
+            name : heroData.data?.results[0].name,
+            image : heroData.data?.results[0].thumbnail.path+'.jpg',
           } as Hero
-          
-          const totalEvents = heroData.data.results[0].events.items
-          for ( let z = 0 ; z < Math.min( 5 , totalEvents.length ) ; z++ ) {
-
-            const eventCall =
-            totalEvents[z].resourceURI
-            + '?ts=' + timeStamp
-            + '&apikey=' + process.env.MARVEL_PUBLIC_KEY
-            + '&hash=' + hash;
-            
-
-            fetch( eventCall )
-            .then( eventResponse => eventResponse.json() )
-            .then( eventData => {
-              let event = {
-                name : eventData.data.results[0].title as string,
-                description : eventData.data.results[0].description as string,
-                image : eventData.data.results[0].thumbnail.path+'.jpg'
-              }
-              hero.events.push(event as Event)
-            })
-            
-          }
 
           if (hero.description == ''){
-            hero.description = 'Check out this character appeareances bellow: '
+            hero.description = 'Check out more about this character at marvel.com. All Marvel Characters and the distinctive likeness(es) thereof are Trademarks & Copyright © 1941 - 2021 Marvel Characters, Inc. and used with permission. ALL RIGHTS RESERVED. '
           }
 
           heroesData = [...heroesData,hero]
@@ -126,9 +105,9 @@ export default function Home() {
           <meta name="description" content="Desafio Marvel" />
           <link rel="icon" href="/favicon.png" />
         </Head>
-        <Controls />
+        <Controls nextHero={nextHero} prevHero={prevHero} />
         {
-          isLoaded ? <Hero heroes={heroes}/> : <h1>Loading...</h1>
+          isLoaded ? <Hero  heroIndex={currentHero} heroes={heroes}/> : <h1>Loading...</h1>
         }
         
       </div>

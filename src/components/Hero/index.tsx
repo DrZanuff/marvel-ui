@@ -2,6 +2,7 @@ import Carousel from '@brainhubeu/react-carousel'
 import '@brainhubeu/react-carousel/lib/style.css';
 
 
+
 import styles from './styles.module.scss';
 
 interface Event {

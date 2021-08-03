@@ -29,7 +29,6 @@ interface Hero {
   name : string,
 }
 
-
 export default function Home() {
   const [currentHero , setCurrentHero ] = useState(0);
   let heroesData = [] as Hero[];
@@ -52,7 +51,7 @@ export default function Home() {
 
 //GET /v1/public/characters
   useEffect( ()=> {
-    
+
     const timeStamp = new Date().getUTCDate().toString()
     const hash = MD5( timeStamp + privateKey + publicKey)
 

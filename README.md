@@ -1,34 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Projeto Marvel Heroes
+ Desafio feito em 24 horas
 
-## Getting Started
+## Tecnologias usadas
 
-First, run the development server:
+- Next.JS
+- ReactJS
+- Typescript
+- SCSS
+- [brainhubeu/react-carousel](https://github.com/brainhubeu/react-carousel)
+- [Marvel API](https://developer.marvel.com/)
 
+## Como usar
+
+Faça um clone desse repositório e rode o comando yarn ou npm para obter as dependências do projeto.
 ```bash
-npm run dev
-# or
+yarn
+```
+Execute o seguinte comando no terminal para iniciar o servidor local do projeto.
+```bash
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Crie um arquivo .env.local na raiz do projeto. Crie as seguinte variavies locais usando sua chave
+```
+MARVEL_PUBLIC_KEY="Sua chave publica"
+MARVEL_PRIVATE_KEY="Sua chave privada"
+```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+O Projeto será executado na porta 3000 e será acessível através da URL http://localhost:3000
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.tsx`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Demonstração
 
-## Learn More
+![alt text](https://github.com/DrZanuff/marvel-ui/blob/main/docs/main.gif?raw=true)
 
-To learn more about Next.js, take a look at the following resources:
+#### Responsividade Mobile
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![alt text](https://raw.githubusercontent.com/DrZanuff/marvel-ui/main/docs/mobile.gif)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Figma
 
-## Deploy on Vercel
+[Link do Figma](https://www.figma.com/file/Hqjz57foqijCHtuEOk8LKx/MarvelUI?node-id=0%3A1)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## O porquê das tecnologias
+
+#### Next.js
+Faz pouco tempo que comecei a usar o Next.js mas já posso ver as enormes vantagens que ele traz out-of-box, isso tirando as funcionalidades de Server Side Rendering e Static Site Generator, imprescindíveis para o SEO do Google.
+
+#### Typescript
+O Typescript traz uma carga um pouco maior para o desenvolvimento, mas compensa ao longo prazo, para projetos maiores e trabalhando com equipes. A tipagem dele faz muita diferença e depois que você se acostuma é difícil ficar sem. Qaundo voce está iniciando com Typescript, pode ser um pouco trabalhoso acertar os formatos dos objetos, mas vale cada esforço dominar essa linguagem.
+
+#### SCSS
+Outra tecnologia que melhora a vida do desenvolvedor. Trabalhar com CSS em cascata e funcionalidades de escopo de estilo junto com Next.js acelera e simplica a estilição dos componentes. 

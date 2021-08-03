@@ -1,80 +1,93 @@
+import Carousel from '@brainhubeu/react-carousel'
+import '@brainhubeu/react-carousel/lib/style.css';
+
+
 import styles from './styles.module.scss';
 
-export function Hero() {
+interface Event {
+    description : string,
+    name : string,
+    image : string,
+  }
+  
+  interface Hero {
+    description : string,
+    image : string,
+    name : string,
+    events : Event[]
+  }
+
+interface HeroProps {
+    heroes : Hero[]
+}
+
+export function Hero({ heroes } : HeroProps) {
     
     return(
-        <div className={styles.container}>
+            <>
+            <Carousel plugins={['arrows' , 'infinite']}>
+                {
+                    heroes.map( hero => {
+                        return(
 
-            <div className={styles.top}>
+                            <div className={styles.container} key={hero?.name}>
 
-                <div className={styles.heroProfile}>
-                    <div className={styles.avatar}>
-                        <img src="https://github.com/DrZanuff.png" alt="" />
-                    </div>
-                    <span>Ricardo Machado Rocha Brito</span>
-                </div>
+                                <div className={styles.top}>
 
-                <div className={styles.info}>
-                    <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur facere consectetur sunt doloribus temporibus explicabo vitae cum doloremque veniam dolore incidunt ipsa, quibusdam, dicta enim possimus nam minima reprehenderit delectus?
-                    </p>
-                </div>
+                                    <div className={styles.heroProfile}>
+                                        <div className={styles.avatar}>
+                                            <img src={hero?.image} alt="" />
+                                        </div>
+                                        <span>{hero?.name}</span>
+                                    </div>
 
-            </div>
-            <div className={styles.bottom}>
+                                    <div className={styles.info}>
+                                        <p>
+                                            {hero?.description}
+                                        </p>
+                                    </div>
 
-                <div className={styles.events}>
+                                </div>
+                                <div className={styles.bottom}>
 
-                    <h1>IMPORTANT EVENTS</h1>
+                                    <div className={styles.events}>
 
-                    <div className={styles.singleEvent}>
+                                        <h1>IMPORTANT EVENTS</h1>
 
-                        <div className={styles.eventContent}>
-                            <div className={styles.eventProfile}>
-                                <span>Event Name Cool Supa Base</span>
-                                <img src="https://github.com/DrZanuff.png" alt="" />
-                            </div>
-                            <p className={styles.eventInfo}>
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, officia soluta vel exercitationem maxime ipsam architecto excepturi eum, beatae provident non incidunt distinctio, veniam repellendus harum sapiente impedit dolorum dolor.
-                            </p>
-                        </div>
-       
-                        <hr />
-                    </div>
+                                        {
+                                            hero?.events.map( ev => {
+                                                return( 
+                                                    <div className={styles.singleEvent} key={ev.name}>
+                                                        <div className={styles.eventContent}>
+                                                            <div className={styles.eventProfile}>
+                                                                <span>{ev.name}</span>
+                                                                <img src={ev.image} alt="" />
+                                                            </div>
+                                                            <p className={styles.eventInfo}>
+                                                                {ev.description}
+                                                            </p>
+                                                        </div>
+                                    
+                                                        <hr />
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                        
+                                    </div>
+                                </div>
+                            </div>    
 
-                    <div className={styles.singleEvent}>
 
-                        <div className={styles.eventContent}>
-                            <div className={styles.eventProfile}>
-                                <span>Event Name Cool Supa Base</span>
-                                <img src="https://github.com/DrZanuff.png" alt="" />
-                            </div>
-                            <p className={styles.eventInfo}>
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, officia soluta vel exercitationem maxime ipsam architecto excepturi eum, beatae provident non incidunt distinctio, veniam repellendus harum sapiente impedit dolorum dolor.
-                            </p>
-                        </div>
-       
-                        <hr />
-                    </div>
+                        )
+                    })
+                }
+                          
+            </Carousel>
+            
+            
 
-                    <div className={styles.singleEvent}>
+        </>
 
-                        <div className={styles.eventContent}>
-                            <div className={styles.eventProfile}>
-                                <span>Event Name Cool Supa Base</span>
-                                <img src="https://github.com/DrZanuff.png" alt="" />
-                            </div>
-                            <p className={styles.eventInfo}>
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, officia soluta vel exercitationem maxime ipsam architecto excepturi eum, beatae provident non incidunt distinctio, veniam repellendus harum sapiente impedit dolorum dolor.
-                            </p>
-                        </div>
-       
-                        <hr />
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        
     )
 }
